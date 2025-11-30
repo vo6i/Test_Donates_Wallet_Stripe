@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница пожертвований</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            color: #444;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .donation-form {
+            margin-top: 20px;
+        }
+        .donation-form input {
+            padding: 10px;
+            margin: 5px 0;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .donation-form button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .donation-form button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Поддержите наш проект!</h1>
+        <p>Ваши пожертвования помогают нам создавать лучший контент. Мы будем очень благодарны за любую помощь!</p>
+        
+        <div class="donation-form">
+            <form id="payment-form">
+                <input type="number" id="amount" placeholder="Введите сумму (например, 10)" required>
+                <button type="submit">Пожертвовать</button>
+            </form>
+        </div>
+
+        <p style="margin-top: 30px;">Спасибо за вашу поддержку!</p>
+    </div>
+    
+    <!-- Скрипт для работы с API Stripe -->
+    <script src="js.stripe.com"></script>
+    <script>
+        // Замените этот ключ на свой собственный ключ (Publishable key), который можно найти в личном кабинете Stripe.
+        // Запомните, что на клиенте должен использоваться "Publishable key", а не "Secret key".
+        const stripe = ('pk_test_51SZ7g5IpAYIaw7kU5CUZoFoMuVdH2AjOb8V0EJ49LBryDiXaPUx1eh2hSvf3CbnZxi2CgEackBjnlRazrowP9tMi00pf0Q35kE'); // ЗАГЛУШКА API КЛЮЧА
+        const form = document.getElementById('payment-form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const amount = document.getElementById('amount').value;
+            
+            // Здесь должна быть логика для создания сессии платежа на вашем сервере
+            // В реальном приложении этот запрос отправляется на ваш сервер, а не напрямую к Stripe.
+            console.log(`Попытка пожертвования на сумму: ${amount}. API-ключ: pk_test_...`);
+            alert(`Это демонстрация. Для реального платежа нужно заменить ключ API и добавить серверную логику. Пожертвование на сумму ${amount} USD.`);
+            
+            // Пример: Запрос к вашему бэкенду для создания сессии платежа
+            // fetch('/create-checkout-session', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         amount: amount
+            //     }),
+            // })
+            // .then(function(response) {
+            //     return response.json();
+            // })
+            // .then(function(session) {
+            //     return stripe.redirectToCheckout({ sessionId: session.id });
+            // })
+            // .then(function(result) {
+            //     if (result.error) {
+            //         alert(result.error.message);
+            //     }
+            // });
+        });
+    </script>
+</body>
+</html>
